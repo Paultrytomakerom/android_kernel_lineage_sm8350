@@ -215,6 +215,8 @@ static void do_input_boost(struct kthread_work *work)
 {
 	unsigned int i, ret;
 	struct cpu_sync *i_sync_info;
+	if (!input_boost_ms)
+		return;
 
 	cancel_delayed_work_sync(&input_boost_rem);
 	if (sched_boost_active) {
@@ -222,11 +224,11 @@ static void do_input_boost(struct kthread_work *work)
 		sched_boost_active = false;
 	}
 
-	/* Set the input_boost_min for all CPUs in the system */
-	pr_debug("Setting input boost min for all CPUs\n");
+    /* Reset the input_boost_min for all CPUs in the system */
+	pr_debug("Resetting input boost min for all CPUs\n");
 	for_each_possible_cpu(i) {
 		i_sync_info = &per_cpu(sync_info, i);
-		i_sync_info->input_boost_min = i_sync_info->input_boost_freq;
+		i_sync_info->input_boost_min = 0;
 	}
 
 	/* Update policies for all online CPUs */
