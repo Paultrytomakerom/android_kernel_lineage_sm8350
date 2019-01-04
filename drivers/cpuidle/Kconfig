@@ -63,7 +63,7 @@ config CPU_IDLE_GOV_HALTPOLL
 	  state.
 
 	  Some virtualized workloads benefit from using it.
-
+	  
 config DT_IDLE_STATES
 	bool
 
