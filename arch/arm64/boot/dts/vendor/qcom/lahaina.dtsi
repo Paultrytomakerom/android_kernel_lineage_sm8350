@@ -5402,21 +5402,19 @@
 		qcom,bus-bw-cfg-count = <7>;
 		qcom,bus-bw-cfg =
 		/** ICC Path 1 **/
-		<0 0>, /* no vote */
-		/* idle: 0-18 Mbps snoc/anoc: 100 Mhz ddr: 451.2 MHz */
-		<2250 390000>,
-		/* low: 18-60 Mbps snoc/anoc: 100 Mhz ddr: 451.2 MHz */
-		<7500 390000>,
-		/* medium: 60-240 Mbps snoc/anoc: 200 Mhz ddr: 451.2 MHz */
-		<30000 790000>,
-		/* high: 240-1080 Mbps snoc/anoc: 200 Mhz ddr: 451.2 MHz */
-		<100000 790000>,
-		/* very high: > 1080 Mbps snoc/anoc: 403 Mhz ddr: 451.2 MHz */
-		<175000 1600000>,
-		/* low (latency critical): 18-60 Mbps snoc/anoc: 200 Mhz
-		 * ddr: 547.2 MHz
-		 */
-		<7500 390000>,
+		<0 0>, /* no vote */		
+               /* idle: 0-18 Mbps snoc/anoc: 50 MHz ddr: 300 MHz */
+               <2250 300000>,
+               /* low: 18-60 Mbps snoc/anoc: 50 MHz ddr: 300 MHz */
+               <7500 300000>,
+               /* medium: 60-240 Mbps snoc/anoc: 200 MHz ddr: 451.2 MHz */
+               <30000 451200>,
+               /* high: 240-1080 Mbps snoc/anoc: 200 MHz ddr: 451.2 MHz */
+               <100000 451200>,
+               /* very high: >1080 Mbps snoc/anoc: 403 MHz ddr: 451.2 MHz */
+               <175000 1600000>,
+               /* low (latency critical): 18-60 Mbps snoc/anoc: 100 MHz ddr: 390 MHz */
+               <7500 300000>,
 
 		/** ICC Path 2 **/
 		<0 0>,
