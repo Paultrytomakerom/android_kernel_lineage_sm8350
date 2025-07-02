@@ -1991,9 +1991,14 @@ long hrtimer_nanosleep(const struct timespec64 *rqtp,
 	struct restart_block *restart;
 	struct hrtimer_sleeper t;
 	int ret = 0;
+	u64 slack;
+
+	slack = current->timer_slack_ns;
+	if (dl_task(current) || rt_task(current))
+		slack = 0;
 
 	hrtimer_init_sleeper_on_stack(&t, clockid, mode);
-	hrtimer_set_expires_range_ns(&t.timer, rqtp, current->timer_slack_ns);
+	hrtimer_set_expires_range_ns(&t.timer, timespec64_to_ktime(*rqtp), slack);
 	ret = do_nanosleep(&t, mode);
 	if (ret != -ERESTART_RESTARTBLOCK)
 		goto out;
